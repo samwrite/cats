@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Add a cat</h1>
+    <form action = "{% url 'main:add' %}" method ="POST">
+        {%csrf_token%}
+        Name: <input type="text" name="name" value="">
+        Age: <input type="text" name="age" value="">
+        <input type="submit" name="" value="Submit">
+    </form>
+    {%if messages%}
+    {%for message in messages%}
+    {{message}}
+    <br>
+    {%endfor%}
+    {%endif%}
+</body>
+</html>

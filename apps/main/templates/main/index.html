@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <a href="{% url 'main:logout' %}">logout</a>
+    <h1>Welcome, {{user}}</h1>
+    <a href="{% url 'main:addCatPage' %}">Add a cat</a>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Likes</th>
+            <th>Actions</th>
+        </tr>
+        {% for cat in cats %}
+        {%if request.session.id == cat.user.id%}
+        <tr>
+            <td><a href="{% url 'main:catInfo' cat.id %}">{{cat.name}} </a> </td>
+            <td>{{cat.age}}</td>
+            <td>{{cat.likes}}</td>
+            <td> <a href="{% url 'main:delete' cat.id %}"> Delete,</a>  <a href="{% url 'main:updatePage' cat.id %}">Update</a></td>
+        </tr>
+        {%else%}
+        <tr>
+            <td><a href="{% url 'main:catInfo' cat.id %}">{{cat.name}}</a></td>
+            <td>{{cat.age}}</td>
+            <td>{{cat.likes}}</td>
+            <td><a href="{% url 'main:like' cat.id %}">Like</a></td>
+        </tr>
+        {%endif%}
+        {% endfor %}
+    </table>
+    
+        
+</body>
+</html>

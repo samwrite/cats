@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    {% for cat in cats %}
+        <h1>Updating {{cat.name}} Information</h1>
+        <h2>Current Info:</h2>
+        Current Name: {{cat.name}}
+        Current Age: {{cat.age}}
+    <form action=" {% url 'main:updateInfo' cat.id %} " method="POST">
+    {% endfor %}
+    {%csrf_token%}
+        New Name: <input type="text" name="name" value="">
+        New Age:<input type="text" name="age" value="">
+        <input type="submit" name="" value="Submit">
+    </form>
+</body>
+</html>
